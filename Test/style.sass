@@ -1,0 +1,37 @@
+$mainteal: #005659
+$lightteal: #379E82
+
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+
+  @-moz-keyframes #{$name}
+    @content
+
+  @-o-keyframes #{$name}
+    @content
+
+  @keyframes #{$name}
+    @content
+
+button
+  color: white
+  background-color: $mainteal
+  padding: 20px
+
+button:hover
+  background: linear-gradient(110deg, $mainteal, $lightteal, #247BA0, #FB3640)
+  background-size: 400% 400%
+  -webkit-animation: Gradient 8s ease infinite
+  -moz-animation: Gradient 8s ease infinite
+  animation: Gradient 8s ease infinite
+
++keyframes(Gradient)
+  0%
+    background-position: 0% 50%
+
+  50%
+    background-position: 100% 50%
+
+  100%
+    background-position: 0% 50%

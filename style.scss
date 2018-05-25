@@ -1,0 +1,252 @@
+$fuchsia: #8d233c;
+$orange: #b24029;
+$salmon: #be7560;
+$green: #8d9e6b;
+$emerald: #2C514C;
+$dark: #0C1715;
+
+$hFont: 'Montez', cursive;
+$pFont:  'Alice', serif;
+
+$gradient: linear-gradient(120deg, $fuchsia,  $orange, $salmon, $green, $emerald, $fuchsia);
+
+$navMap: ('.nav1': $fuchsia, '.nav2': $orange, '.nav3': $salmon, '.nav4': $green, '.nav5': $emerald);
+
+
+
+
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin gradient-animation(){
+  background: linear-gradient(120deg, $emerald, $emerald, $green, $salmon);
+background-size: 300% 300%;
+@include prefix(animation, Gradient .8s ease, webkit moz o);
+  animation-fill-mode: forwards;
+}
+
+@mixin keyframes( $name ) {
+      @-webkit-keyframes #{ $name } {
+            @content;
+      }
+      @-moz-keyframes #{ $name } {
+            @content;
+      }
+      @-o-keyframes #{ $name } {
+            @content;
+      }
+      @keyframes #{ $name } {
+            @content;
+      }
+}
+
+$titleLength: 18;
+$delay:0;
+
+@for $i from 1 through $titleLength{
+  .title span:nth-child(#{$i}){
+    animation-delay: $delay+s;
+    $delay: $delay+0.03;
+  }
+}
+
+body{
+  margin:0;
+}
+
+/* HEADER */
+
+#header{
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 200px 300px 100px;
+  grid-template-areas:
+       "icon    picture"
+       "title   picture"
+       "blah    picture";
+  justify-items: center;
+  place-items: stretch stretch;
+  width: 100%;
+}
+
+#header .icon{
+  grid-area: icon;
+  background-color: #8d9e6b;
+  justify-self: center;
+  align-self: end;
+}
+
+#header .title{
+  grid-area: title;
+  justify-self: center;
+  align-self: start;
+  color: $dark;
+  font-family: $hFont;
+  font-weight: bolder;
+}
+
+/* title animation */
+.title span{
+  opacity: 0;
+  @include prefix(animation, Show .8s ease, webkit moz o);
+  animation-fill-mode: forwards;
+}
+
+@include keyframes(Show) {
+  0% {
+    opacity: 0;
+    font-size:0.01em
+  }
+  100% {
+    opacity:1;
+    font-size:4.5em
+  }
+};
+
+
+
+
+
+
+#header .blah{
+  grid-area: blah;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+
+}
+
+#header .pic{
+  grid-area: picture;
+  background-image: url("images/de0ec198c4ea33a2f5be5dc531920338.jpg");
+  background-size: cover;
+  z-index:-999;
+}
+
+
+
+
+/*NAVIGATION*/
+
+#navigation{
+    display: flex;
+    margin-top: -100px;
+    height: 100px;
+    background-color: white;
+    width: 60%;
+    transition: width 1.5s ease;
+    z-index:999;
+    color: white;
+    @include prefix(box-shadow, 0px 10px 30px -18px $dark, webkit ms o);
+}
+
+
+ul{
+  list-style: none;
+  display: flex;
+  width: 100%;
+  text-align: center;
+  align-items: stretch;
+  margin: 0;
+  padding: 0px;
+  flex-flow: row wrap;
+}
+li{
+  display: flex;
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-family: $pFont;
+  text-transform: uppercase;
+  width: 100%;
+  cursor: pointer;
+}
+
+
+.hidden{
+  opacity:0;
+}
+.fixed-nav{
+  margin-top: 0px !important;
+  position: fixed;
+  width:100% !important;
+  top:0;
+  height: 70px !important;
+
+}
+
+.logo{
+  max-width: 0;
+  overflow: hidden;
+  text-transform: lowercase;
+  font-weight: 900;
+  font-size: 2.5em;
+  font-family: $hFont;
+  transition: all 1.5s;
+  background: $gradient;
+  background-size: 90%;
+  @include prefix(background-clip, text, webkit ms o);
+  @include prefix(text-fill-color, transparent, webkit ms o);
+}
+.fixed-nav .logo{
+  max-width: 500px;
+}
+
+@each $nav, $color in $navMap
+{#{$nav}
+  {background-color: $color;}
+}
+
+@each $nav, $color in $navMap
+{#{$nav}:hover
+  {
+    color: $color;
+    background-color: #fff;
+    transition: all .5s ease-out;
+  }
+}
+
+/* CONTENT */
+.content{
+  padding: 5% 10%;
+  font-family: $pFont;
+}
+
+/* BUTTON */
+button{
+  color: white;
+  background-color: $emerald;
+  padding: 10px 15px;
+  border-style: none;
+  cursor: pointer;
+}
+
+button:hover{
+  @include gradient-animation();
+}
+
+@include keyframes(Gradient) {
+  0% {
+    background-position: 0% 0%
+  }
+  100% {
+    background-position: 100% 100%
+  }
+};
+
+/*flipping
+#navigation li:not(.logo):hover{
+  transform: rotateY(180deg);
+}
+#navigation li:not(.logo){
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;}*/
