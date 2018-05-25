@@ -23,7 +23,7 @@ $navMap: ('.nav1': $fuchsia, '.nav2': $orange, '.nav3': $salmon, '.nav4': $green
 }
 
 @mixin gradient-animation(){
-  background: linear-gradient(120deg, $emerald, $emerald, $green, $salmon);
+  background: linear-gradient(120deg, $emerald 50%, $green);
 background-size: 300% 300%;
 @include prefix(animation, Gradient .8s ease, webkit moz o);
   animation-fill-mode: forwards;

@@ -309,7 +309,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(120deg, #2C514C, #2C514C, #8d9e6b, #be7560);
+  background: linear-gradient(120deg, #2C514C 50%, #8d9e6b);
   background-size: 300% 300%;
   -webkit-animation: Gradient 0.8s ease;
   -moz-animation: Gradient 0.8s ease;
