@@ -1,3 +1,13 @@
+/* ---------- TITLE BREAKDOWN---------- */
+
+const title = document.querySelector('.title');
+title.innerHTML = breakdown(title.textContent);
+
+function breakdown(word) {
+  return [...word].map(letter => `<span>${letter}</span>`).join('');
+}
+
+
 /* ---------- NAVIGATION ---------- */
 
 const nav = document.querySelector('#navigation');
@@ -31,13 +41,33 @@ navItems.forEach(item => item.addEventListener('click', navClicked));
 
 
 
+/* ---------- FAQ ---------- */
+
+const cards = Array.from(document.querySelectorAll('#faq .card'));
+
+function openCard(){
+  console.log(this);
+  this.classList.add('flipped');
+}
+
+function closeCard(){
+  console.log(this);
+  this.classList.remove('flipped');
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', openCard);
+  card.addEventListener('mouseleave', closeCard);
+});
+
+
 /* ---------- GALLERY ---------- */
 
 const gallery = document.querySelector('#gallery');
 const galleryWrapper = document.querySelector('#gallery .wrapper');
 const moveBtns = document.querySelectorAll('#gallery .move');
 
-const translateValue = gallery.offsetWidth / 2.2;
+const translateValue = gallery.offsetWidth / 2.5;
 const lastImg = Array.from(document.querySelectorAll('#gallery .wrapper img')).pop();
 
 /* --- moving --- */
@@ -46,9 +76,10 @@ let translated = 0;
 
 function galleryMove(){
   if(this.classList.contains('next')){
-    let galleryEnd = gallery.getBoundingClientRect().x + gallery.getBoundingClientRect().width;
+    let galleryEnd =  gallery.getBoundingClientRect().width;
     let imageEnd =  lastImg.getBoundingClientRect().x + lastImg.getBoundingClientRect().width;
-    if(galleryEnd >= translateValue + translated){
+    console.log(galleryEnd, imageEnd, translated);
+    if(imageEnd - galleryEnd >= translateValue + translated){
       translated += translateValue;
       galleryWrapper.style.transform = `translate(-${translated}px, 0px)`;
     }
@@ -72,4 +103,4 @@ function galleryMove(){
 
 moveBtns.forEach(btn => btn.addEventListener('click', galleryMove));
 
-/* --- end of gallery moving --- */
+/* --- sharing --- */

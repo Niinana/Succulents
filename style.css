@@ -74,7 +74,7 @@ body {
   margin: 0;
 }
 
-/* HEADER */
+/* ---------- HEADER --------- */
 #header {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -101,7 +101,7 @@ body {
   font-weight: bolder;
 }
 
-/* title animation */
+/* --- title animation --- */
 .title span {
   opacity: 0;
   -webkit-animation: Show 0.8s ease;
@@ -151,15 +151,6 @@ body {
     font-size: 4.5em;
   }
 }
-#header .blah {
-  grid-area: blah;
-  justify-content: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-}
-
 #header .pic {
   grid-area: picture;
   background-image: url("images/de0ec198c4ea33a2f5be5dc531920338.jpg");
@@ -167,7 +158,7 @@ body {
   z-index: -999;
 }
 
-/*NAVIGATION*/
+/* --------- NAVIGATION --------- */
 #navigation {
   display: flex;
   margin-top: -100px;
@@ -183,7 +174,7 @@ body {
   box-shadow: 0px 0px 8px 0px rgba(12, 23, 21, 0.3);
 }
 
-ul {
+#navigation ul {
   list-style: none;
   display: flex;
   width: 100%;
@@ -194,7 +185,7 @@ ul {
   flex-flow: row wrap;
 }
 
-li {
+#navigation li {
   display: flex;
   flex: 1;
   text-align: center;
@@ -207,11 +198,11 @@ li {
   cursor: pointer;
 }
 
-.hidden {
+#navigation .hidden {
   opacity: 0;
 }
 
-.fixed-nav {
+#navigation.fixed-nav {
   margin-top: 0px !important;
   position: fixed;
   width: 100% !important;
@@ -219,7 +210,7 @@ li {
   height: 70px !important;
 }
 
-.logo {
+#navigation .logo {
   max-width: 0;
   overflow: hidden;
   text-transform: lowercase;
@@ -239,28 +230,12 @@ li {
   text-fill-color: transparent;
 }
 
-.fixed-nav .logo {
+#navigation.fixed-nav .logo {
   max-width: 500px;
 }
 
 .nav1 {
   background-color: #8d233c;
-}
-
-.nav2 {
-  background-color: #b24029;
-}
-
-.nav3 {
-  background-color: #be7560;
-}
-
-.nav4 {
-  background-color: #8d9e6b;
-}
-
-.nav5 {
-  background-color: #2C514C;
 }
 
 .nav1:hover {
@@ -269,10 +244,18 @@ li {
   transition: all .5s ease-out;
 }
 
+.nav2 {
+  background-color: #b24029;
+}
+
 .nav2:hover {
   color: #b24029;
   background-color: #fff;
   transition: all .5s ease-out;
+}
+
+.nav3 {
+  background-color: #be7560;
 }
 
 .nav3:hover {
@@ -281,10 +264,18 @@ li {
   transition: all .5s ease-out;
 }
 
+.nav4 {
+  background-color: #8d9e6b;
+}
+
 .nav4:hover {
   color: #8d9e6b;
   background-color: #fff;
   transition: all .5s ease-out;
+}
+
+.nav5 {
+  background-color: #2C514C;
 }
 
 .nav5:hover {
@@ -293,7 +284,7 @@ li {
   transition: all .5s ease-out;
 }
 
-/* CONTENT */
+/* --------- CONTENT --------- */
 .content {
   margin: 5% 10%;
   font-family: "Alice", serif;
@@ -303,7 +294,7 @@ h2 {
   font-size: 2em;
 }
 
-/* BUTTON */
+/* --------- BUTTON --------- */
 .btn {
   color: white;
   background-color: #2C514C;
@@ -354,7 +345,7 @@ h2 {
     background-position: 100% 100%;
   }
 }
-/* QUOTE */
+/* --------- QUOTE --------- */
 .quote {
   margin: 5% 0;
   padding: 0 10%;
@@ -379,16 +370,99 @@ h2 {
   font-size: 1.5em;
 }
 
-/* GALLERY*/
+/* --------- FAQ --------- */
+#faq {
+  display: flex;
+  text-align: center;
+  height: 350px;
+  color: #fff;
+}
+
+#faq .card {
+  display: flex;
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#faq .card.flipped {
+  -webkit-transform: rotatey(-180deg);
+}
+
+.front, .back {
+  -webkit-backface-visibility: hidden;
+  z-index: 2;
+  text-align: center;
+}
+
+#faq .card .front {
+  position: absolute;
+  z-index: 1;
+}
+
+#faq .card .back {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-style: solid;
+  -webkit-transform: rotatey(-180deg);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#faq .card2 {
+  margin: 0 10px;
+}
+
+.card1 {
+  background-color: #8d233c;
+}
+
+.card1 .back {
+  border-color: #8d233c;
+  color: #8d233c;
+}
+
+.card2 {
+  background-color: #b24029;
+}
+
+.card2 .back {
+  border-color: #b24029;
+  color: #b24029;
+}
+
+.card3 {
+  background-color: #2C514C;
+}
+
+.card3 .back {
+  border-color: #2C514C;
+  color: #2C514C;
+}
+
+/* --------- GALLERY --------- */
 #gallery {
   overflow: hidden;
   position: relative;
+  margin: 5% 0% 0% 0%;
 }
 
 #gallery .wrapper {
   display: grid;
   grid-template-rows: 500px;
-  grid-gap: 5px;
+  grid-gap: 0px;
   grid-auto-flow: column;
   transition: all 0.5s ease-out;
 }
@@ -417,14 +491,5 @@ h2 {
 #gallery .next {
   right: 0;
 }
-
-/*flipping
-#navigation li:not(.logo):hover{
-  transform: rotateY(180deg);
-}
-#navigation li:not(.logo){
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;}*/
 
 /*# sourceMappingURL=style.css.map */
