@@ -177,10 +177,10 @@ body {
   transition: width 1.5s ease;
   z-index: 999;
   color: white;
-  -webkit-box-shadow: 0px 10px 30px -18px #0C1715;
-  -ms-box-shadow: 0px 10px 30px -18px #0C1715;
-  -o-box-shadow: 0px 10px 30px -18px #0C1715;
-  box-shadow: 0px 10px 30px -18px #0C1715;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(12, 23, 21, 0.3);
+  -ms-box-shadow: 0px 0px 8px 0px rgba(12, 23, 21, 0.3);
+  -o-box-shadow: 0px 0px 8px 0px rgba(12, 23, 21, 0.3);
+  box-shadow: 0px 0px 8px 0px rgba(12, 23, 21, 0.3);
 }
 
 ul {
@@ -295,12 +295,16 @@ li {
 
 /* CONTENT */
 .content {
-  padding: 5% 10%;
+  margin: 5% 10%;
   font-family: "Alice", serif;
 }
 
+h2 {
+  font-size: 2em;
+}
+
 /* BUTTON */
-button {
+.btn {
   color: white;
   background-color: #2C514C;
   padding: 10px 15px;
@@ -308,13 +312,13 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: linear-gradient(120deg, #2C514C 50%, #8d9e6b);
+.btn:hover {
+  background: linear-gradient(120deg, #2C514C 35%, #8d9e6b);
   background-size: 300% 300%;
-  -webkit-animation: Gradient 0.8s ease;
-  -moz-animation: Gradient 0.8s ease;
-  -o-animation: Gradient 0.8s ease;
-  animation: Gradient 0.8s ease;
+  -webkit-animation: Gradient 0.3s ease;
+  -moz-animation: Gradient 0.3s ease;
+  -o-animation: Gradient 0.3s ease;
+  animation: Gradient 0.3s ease;
   animation-fill-mode: forwards;
 }
 
@@ -350,6 +354,70 @@ button:hover {
     background-position: 100% 100%;
   }
 }
+/* QUOTE */
+.quote {
+  margin: 5% 0;
+  padding: 0 10%;
+  display: grid;
+  overflow: visible;
+  grid-gap: 5%;
+  background-color: #be7560;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 200px;
+}
+
+.quote img {
+  justify-self: left;
+  width: 100%;
+}
+
+.quote h3 {
+  justify-self: right;
+  color: #fff;
+  font-style: italic;
+  font-size: 1.5em;
+}
+
+/* GALLERY*/
+#gallery {
+  overflow: hidden;
+  position: relative;
+}
+
+#gallery .wrapper {
+  display: grid;
+  grid-template-rows: 500px;
+  grid-gap: 5px;
+  grid-auto-flow: column;
+  transition: all 0.5s ease-out;
+}
+
+#gallery img {
+  height: 100%;
+}
+
+#gallery .move {
+  border-style: none;
+  color: #2C514C;
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 500px;
+  width: 100px;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#gallery .move:hover {
+  opacity: 1;
+}
+
+#gallery .next {
+  right: 0;
+}
+
 /*flipping
 #navigation li:not(.logo):hover{
   transform: rotateY(180deg);
