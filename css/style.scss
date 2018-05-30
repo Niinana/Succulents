@@ -14,51 +14,25 @@ $navMap: ('.nav1': $fuchsia, '.nav2': $orange, '.nav3': $salmon, '.nav4': $green
 
 $faqMap: ('.card1': $fuchsia, '.card2': $orange, '.card3': $emerald);
 
+$titleLength: 18;
+$delay:0;
 
 
-@mixin prefix($property, $value, $prefixes: ()) {
-  @each $prefix in $prefixes {
-    #{'-' + $prefix + '-' + $property}: $value;
-  }
-  #{$property}: $value;
-}
 
 @mixin gradient-animation(){
   background: linear-gradient(120deg, $emerald 35%, $green);
 background-size: 300% 300%;
-@include prefix(animation, Gradient .3s ease, webkit moz o);
+animation: Gradient .3s ease;
   animation-fill-mode: forwards;
 }
 
-@mixin keyframes( $name ) {
-      @-webkit-keyframes #{ $name } {
-            @content;
-      }
-      @-moz-keyframes #{ $name } {
-            @content;
-      }
-      @-o-keyframes #{ $name } {
-            @content;
-      }
-      @keyframes #{ $name } {
-            @content;
-      }
-}
 
-$titleLength: 18;
-$delay:0;
 
-@for $i from 1 through $titleLength{
-  .title span:nth-child(#{$i}){
-    animation-delay: $delay+s;
-    $delay: $delay+0.03;
-  }
-}
+
 
 body{
   margin:0;
 }
-
 
 /* ---------- HEADER --------- */
 
@@ -92,34 +66,37 @@ body{
 }
 
 /* --- title animation --- */
+
 .title span{
   opacity: 0;
-  @include prefix(animation, Show .8s ease, webkit moz o);
+  animation: Show .8s ease;
   animation-fill-mode: forwards;
 }
 
-@include keyframes(Show) {
+@for $i from 1 through $titleLength{
+  .title span:nth-child(#{$i}){
+    animation-delay: $delay+s;
+    $delay: $delay+0.03;
+  }
+}
+
+@keyframes Show {
   0% {
     opacity: 0;
-    font-size:0.01em
+    font-size: 0.01em;
   }
   100% {
-    opacity:1;
-    font-size:4.5em
+    opacity: 1;
+    font-size: 4.5em;
   }
-};
-
-
-
-
+}
 
 #header .pic{
   grid-area: picture;
-  background-image: url("images/de0ec198c4ea33a2f5be5dc531920338.jpg");
+  background-image: url("../images/de0ec198c4ea33a2f5be5dc531920338.jpg");
   background-size: cover;
   z-index:-999;
 }
-
 
 
 
@@ -134,7 +111,7 @@ body{
     transition: width 1.5s ease;
     z-index:999;
     color: white;
-    @include prefix(box-shadow, 0px 0px 8px 0px rgba(12,23,21,0.3), webkit ms o);
+    box-shadow: 0px 0px 8px 0px rgba(12,23,21,0.3);
 }
 
 #navigation ul{
@@ -184,8 +161,10 @@ body{
   transition: all 1.5s;
   background: $gradient;
   background-size: 90%;
-  @include prefix(background-clip, text, webkit ms o);
-  @include prefix(text-fill-color, transparent, webkit ms o);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
 }
 #navigation.fixed-nav .logo{
   max-width: 500px;
@@ -204,7 +183,6 @@ body{
 }
 
 
-
 /* --------- CONTENT --------- */
 
 .content{
@@ -214,6 +192,14 @@ body{
 
 h2{
   font-size: 2em;
+}
+
+h3{
+    font-size: 1.5em;
+}
+
+h4{
+    font-size: 1.2em;
 }
 
 
@@ -231,20 +217,17 @@ h2{
   @include gradient-animation();
 }
 
-@include keyframes(Gradient) {
+@keyframes Gradient {
   0% {
-    background-position: 0% 0%
-  }
+    background-position: 0% 0%; }
   100% {
-    background-position: 100% 100%
-  }
-};
+    background-position: 100% 100%; } }
 
 
 /* --------- QUOTE --------- */
 
 .quote{
-  margin: 5% 0;
+  margin: 10% 0;
   padding: 0 10%;
   display: grid;
   overflow:visible;
@@ -264,7 +247,6 @@ h2{
   justify-self: right;
   color: #fff;
   font-style: italic;
-  font-size: 1.5em;
 }
 
 
@@ -277,31 +259,33 @@ h2{
   color: #fff;
 }
 
+
+/* --- cards --- */
+
  #faq .card{
    display: flex;
    flex: 1;
    text-align: center;
    justify-content: center;
    align-items: center;
-   text-transform: uppercase;
-   cursor:pointer;
-   @include prefix(transform-style, preserve-3d, webkit ms o);
-   @include prefix(transition, 0.5s, webkit ms o);
+   cursor: pointer;
+   transform-style: preserve-3d;
+   transition: 0.5s;
+
  }
 
 #faq .card.flipped {
-  -webkit-transform: rotatey(-180deg);
+  transform: rotatey(-180deg);
 }
 
-.front, .back{
-
- -webkit-backface-visibility: hidden ;
+#faq .front, .back{
  z-index: 2;
-   text-align: center;
-
+ text-align: center;
+ backface-visibility: hidden;
 }
 
  #faq .card .front {
+  text-transform: uppercase;
   position: absolute;
   z-index: 1;
 
@@ -310,11 +294,14 @@ h2{
   width: 100%;
   height: 100%;
   background: white;
-border-style: solid;
-  -webkit-transform: rotatey(-180deg);
-  font-size: 1.2em;
-  font-weight: bold;
+  border-style: solid;
+  cursor: default;
+  transform: rotatey(-180deg);
+  overflow-y:scroll;
 }
+
+
+
 
 #faq .card2{
   margin: 0 10px;
@@ -327,11 +314,71 @@ border-style: solid;
   #{$card} .back{
     border-color: $color;
     color: $color;
-
-
   }
-
+  #{$card} .card-title{
+    background-color: $color;
+    color: #fff;
+  }
 }
+
+/* --- back card --- */
+
+#faq .back input{
+  display: none;
+}
+
+#faq .back .card-title{
+  position: sticky;
+  top:0;
+  width: 100%;
+}
+
+#faq .back .card-title h4{
+  text-transform: uppercase;
+  margin: 0;
+  padding: 5px;
+}
+
+#faq .back .question{
+  padding: 10px;
+  text-align: left;
+}
+
+#faq .back p{
+  font-size: 1.2em;
+}
+
+#faq .back .q{
+  font-weight: bold;
+  margin-bottom: 0px;
+      cursor: pointer;
+}
+
+#faq .back .q::before{
+  content: '◆';
+}
+
+
+/*
+#faq .back span.active{
+      display: block;
+  transform: rotatex(-180deg);
+}*/
+
+#faq .back .a{
+  font-style: italic;
+  overflow: hidden;
+  height: 0px;
+  transition: height 0.5s ease;
+}
+
+#faq .back .question.active .a{
+  cursor: pointer;
+}
+
+
+
+
 
 
 
@@ -357,7 +404,7 @@ border-style: solid;
 
 #gallery .move{
   border-style: none;
-  color: $emerald;
+  color: #fff;
   background-color: rgba(255, 255, 255, 0.3);
   height: 500px;
   width: 100px;

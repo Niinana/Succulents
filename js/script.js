@@ -44,21 +44,44 @@ navItems.forEach(item => item.addEventListener('click', navClicked));
 /* ---------- FAQ ---------- */
 
 const cards = Array.from(document.querySelectorAll('#faq .card'));
+const questions = Array.from(document.querySelectorAll('#faq .back .question'));
+
+/* --- q&a --- */
+
+function toggleActive(){
+  const [span, a] = [this.querySelector('.q span'), this.querySelector('.a')];
+  console.log(this);
+  this.classList.toggle('active');
+  if(this.classList.contains('active')){
+    const height = `${a.querySelector('p').offsetHeight}px`;
+    a.style.height= height;
+  }
+  else{
+    a.style.height='0px';
+  }
+}
+
+questions.forEach(question => question.addEventListener('click', toggleActive));
+
+
+/* --- flipping --- */
 
 function openCard(){
-  console.log(this);
   this.classList.add('flipped');
 }
 
 function closeCard(){
-  console.log(this);
   this.classList.remove('flipped');
+  const active = Array.from(document.querySelectorAll('#faq .question.active'));
+  active.forEach(a => a.toggleActive);
 }
 
 cards.forEach(card => {
   card.addEventListener('click', openCard);
   card.addEventListener('mouseleave', closeCard);
 });
+
+
 
 
 /* ---------- GALLERY ---------- */
