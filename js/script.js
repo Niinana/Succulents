@@ -7,6 +7,8 @@ function breakdown(word) {
   return [...word].map(letter => `<span>${letter}</span>`).join('');
 }
 
+//console.log([...title.textContent])
+
 
 /* ---------- NAVIGATION ---------- */
 
@@ -41,6 +43,45 @@ navItems.forEach(item => item.addEventListener('click', navClicked));
 
 
 
+
+/* ---------- VARIETIES ---------- */
+const slider = document.querySelector('#varieties .slider');
+const points = Array.from(document.querySelectorAll('#varieties .nav-points span'));
+let translate = 0;
+
+const species = Array.from(document.querySelectorAll('#varieties .species p'));
+const imgPlaceholder = document.querySelector('#varieties .chosen');
+const titlePlaceholder = document.querySelector('#varieties .chosen-title');
+
+/* --- slider --- */
+
+function activePoint(){
+  const pastPoint=document.querySelector('#varieties .nav-points .active');
+  const pastSlide=document.querySelector('#varieties .slider .active');
+  pastPoint.classList.remove('active');
+  pastSlide.classList.remove('active');
+  const matchingSlide = document.querySelector(`#${this.dataset.slide}`);
+  this.classList.add('active');
+  matchingSlide.classList.add('active');
+  translate += pastSlide.getBoundingClientRect().y - matchingSlide.getBoundingClientRect().y;
+  slider.style.transform = `translate(0px, ${translate}px)`;
+}
+
+points.forEach(point => point.addEventListener('click', activePoint))
+
+
+/* --- species --- */
+
+function activeSpecie(){
+  const img = this.dataset.image;
+ imgPlaceholder.style.background = `url('${img}')`;
+ titlePlaceholder.innerHTML=this.textContent;
+}
+
+species.forEach(specie => specie.addEventListener('click', activeSpecie))
+
+
+
 /* ---------- FAQ ---------- */
 
 const cards = Array.from(document.querySelectorAll('#faq .card'));
@@ -50,14 +91,15 @@ const questions = Array.from(document.querySelectorAll('#faq .back .question'));
 
 function toggleActive(){
   const [span, a] = [this.querySelector('.q span'), this.querySelector('.a')];
-  console.log(this);
   this.classList.toggle('active');
   if(this.classList.contains('active')){
     const height = `${a.querySelector('p').offsetHeight}px`;
     a.style.height= height;
+    span.innerHTML='&#9652;';
   }
   else{
     a.style.height='0px';
+    span.innerHTML='&#9662;'
   }
 }
 
@@ -71,9 +113,9 @@ function openCard(){
 }
 
 function closeCard(){
-  this.classList.remove('flipped');
-  const active = Array.from(document.querySelectorAll('#faq .question.active'));
-  active.forEach(a => a.toggleActive);
+  const activated = Array.from(this.querySelectorAll('#faq .question.active'));
+  activated.forEach(active => active.click());
+ this.classList.remove('flipped');
 }
 
 cards.forEach(card => {
@@ -101,7 +143,6 @@ function galleryMove(){
   if(this.classList.contains('next')){
     let galleryEnd =  gallery.getBoundingClientRect().width;
     let imageEnd =  lastImg.getBoundingClientRect().x + lastImg.getBoundingClientRect().width;
-    console.log(galleryEnd, imageEnd, translated);
     if(imageEnd - galleryEnd >= translateValue + translated){
       translated += translateValue;
       galleryWrapper.style.transform = `translate(-${translated}px, 0px)`;
@@ -115,7 +156,6 @@ function galleryMove(){
     translated -= translateValue;
     if(translated > 0){
       galleryWrapper.style.transform = `translate(-${translated}px, 0px)`;
-      console.log(`translate(-${translated}px, 0px)`);
     }
     else{
       translated=0;
@@ -125,5 +165,3 @@ function galleryMove(){
 }
 
 moveBtns.forEach(btn => btn.addEventListener('click', galleryMove));
-
-/* --- sharing --- */
