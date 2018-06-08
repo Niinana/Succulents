@@ -20,7 +20,8 @@ let topOfNav = nav.offsetTop;
 function fixNav() {
   if (window.scrollY >= topOfNav) {
     nav.classList.add('fixed-nav');
-  } else{
+  }
+  else {
     nav.classList.remove('fixed-nav');
   }
 }
@@ -30,9 +31,14 @@ window.addEventListener('scroll', fixNav);
 /* --- navigating --- */
 
 function navClicked(){
-  const div = document.querySelector(`#${this.dataset.where}`);
+  let where = 0;
+  if(this.dataset.where !== 'top')
+  {
+    const div = document.querySelector(`#${this.dataset.where}`);
+    where = div.offsetTop-nav.offsetHeight;
+  }
   window.scroll({
-    top: div.offsetTop-nav.offsetHeight,
+    top: where,
     behavior: "smooth"
   });
 }
@@ -63,7 +69,6 @@ function activePoint(){
   matchingSlide.classList.add('active');
   translate += pastSlide.getBoundingClientRect().y - matchingSlide.getBoundingClientRect().y;
   slider.style.transform = `translate(0px, ${translate}px)`;
-  console.log(matchingSlide, matchingSlide.getBoundingClientRect().y);
 }
 
 points.forEach(point => point.addEventListener('click', activePoint))
@@ -72,19 +77,18 @@ points.forEach(point => point.addEventListener('click', activePoint))
 /* --- species --- */
 
 function activeSpecie(){
+  const previous = document.querySelector('#varieties .species .active-specie');
   const img = this.dataset.image;
   const parent = this.parentElement.id.replace(/-/g, ' ');;
-  const imgPlaceholder = document.querySelector('#varieties .active .chosen');
-
   const image = document.querySelector('#varieties .active .chosen img');
-
   const titlePlaceholder = document.querySelector('#varieties .active .chosen-title');
- //imgPlaceholder.style.background = `url('${img}')`;
- image.src = img;
- titlePlaceholder.innerHTML=`<span>${this.textContent}</span> (${parent})`;
+  previous.classList.remove('active-specie');
+  this.classList.add('active-specie');
+  image.src = img;
+  titlePlaceholder.innerHTML=`<span>${this.textContent}</span> (${parent})`;
 }
 
-species.forEach(specie => specie.addEventListener('click', activeSpecie))
+species.forEach(specie => specie.addEventListener('click', activeSpecie));
 
 
 
@@ -111,11 +115,9 @@ function toggleActive(){
     span.innerHTML='&#9652;';
     this.classList.add('active');
   }
-  if(current != null){ removeActive(current);}
-
-
-
-
+  if(current != null) {
+    removeActive(current);
+  }
 }
 
 questions.forEach(question => question.addEventListener('click', toggleActive));
@@ -137,8 +139,6 @@ cards.forEach(card => {
   card.addEventListener('click', openCard);
   card.addEventListener('mouseleave', closeCard);
 });
-
-
 
 
 /* ---------- GALLERY ---------- */

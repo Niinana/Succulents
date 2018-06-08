@@ -3,16 +3,17 @@ $orange: #b24029;
 $salmon: #be7560;
 $green: #8d9e6b;
 $emerald: #2C514C;
-$dark: #0C1715;
+$dark: #101E1C;
+$light: #ffffff;
 
 $hFont: 'Montez', cursive;
 $pFont:  'Alice', serif;
 
 $gradient: linear-gradient(120deg, $fuchsia,  $orange, $salmon, $green, $emerald, $fuchsia);
 
-$navMap: ('.nav1': $fuchsia, '.nav2': $orange, '.nav3': $salmon, '.nav4': $green, '.nav5': $emerald);
+$navMap: ('.nav-1': $fuchsia, '.nav-2': $orange, '.nav-3': $salmon, '.nav-4': $green, '.nav-5': $emerald);
 
-$faqMap: ('.card1': $fuchsia, '.card2': $orange, '.card3': $emerald);
+$faqMap: ('.card-1': $fuchsia, '.card-2': $orange, '.card-3': $emerald);
 
 $titleLength: 18;
 $delay:0;
@@ -28,11 +29,49 @@ animation: Gradient .3s ease;
 
 
 
-
+/* --------- GENERAL --------- */
 
 body{
   margin:0;
+  color: $dark;
+  background-color: $light;
 }
+
+.content{
+  margin: 10%;
+  font-family: $pFont;
+}
+
+h2{
+  font-size: 2em;
+}
+
+h3{
+    font-size: 1.5em;
+}
+
+h4{
+    font-size: 1.2em;
+}
+
+.btn{
+  color: $light;
+  background-color: $emerald;
+  padding: 10px 15px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.btn:hover{
+  @include gradient-animation();
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 0%; }
+  100% {
+    background-position: 100% 100%; } }
+
 
 /* ---------- HEADER --------- */
 
@@ -54,6 +93,24 @@ body{
   background-color: #8d9e6b;
   justify-self: center;
   align-self: end;
+}
+
+path{
+  stroke-dasharray: 300;
+  opacity: 10;
+  animation: animate 5500ms;
+}
+
+@keyframes animate{
+  0%{
+    opacity:10;
+    stroke-dashoffset: 300;
+  }
+
+  100%{
+    opacity:10;
+    stroke-dashoffset: 0;
+  }
 }
 
 #header .title{
@@ -106,11 +163,11 @@ body{
     display: flex;
     margin-top: -100px;
     height: 100px;
-    background-color: white;
+    background-color: $light;
     width: 60%;
     transition: width 1.5s ease;
     z-index:999;
-    color: white;
+    color: $light;
     box-shadow: 0px 0px 8px 0px rgba(12,23,21,0.3);
 }
 
@@ -177,76 +234,153 @@ body{
   #{$nav}:hover
     {
       color: $color;
-      background-color: #fff;
+      background-color: $light;
       transition: all .5s ease-out;
     }
 }
 
 
-/* --------- CONTENT --------- */
+/* --------- VARIETIES --------- */
 
-.content{
-  margin: 5% 10%;
-  font-family: $pFont;
+#varieties .wrapper{
+    overflow: hidden;
+    position: relative;
+    color: $dark;
+    box-shadow: inset 0px 0px 10px 1px rgba(141,158,107,0.7);
 }
 
-h2{
-  font-size: 2em;
+#varieties .slider{
+  text-align: center;
+  height: 500px;
+  transition: transform 0.7s ease;
+  margin: 0, 10px;
 }
 
-h3{
-    font-size: 1.5em;
-}
-
-h4{
-    font-size: 1.2em;
-}
-
-
-/* --------- BUTTON --------- */
-
- .btn{
-  color: white;
-  background-color: $emerald;
-  padding: 10px 15px;
-  border-style: none;
-  cursor: pointer;
-}
-
- .btn:hover{
-  @include gradient-animation();
-}
-
-@keyframes Gradient {
-  0% {
-    background-position: 0% 0%; }
-  100% {
-    background-position: 100% 100%; } }
-
-
-/* --------- QUOTE --------- */
-
-.quote{
-  margin: 10% 0;
-  padding: 0 10%;
-  display: grid;
-  overflow:visible;
-  grid-gap: 5%;
-  background-color: $salmon;
-    align-items: center;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 200px;
-}
-
-.quote img{
-  justify-self: left;
+#varieties .slide{
   width: 100%;
+  height: 90%;
+  padding: 2.5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#varieties .slide.active{
+  opacity: 1;
 }
 
-.quote h3{
-  justify-self: right;
-  color: #fff;
+/* --- chosen --- */
+
+#varieties .chosen{
+  position: relative;
+  display:grid;
+  justify-items: center;
+}
+
+#varieties .chosen .chosen-title{
+  margin: 0;
+  padding: 10px;
+  text-transform: lowercase !important;
+  font-weight: normal;
+  color: $dark;
+  position: absolute;
+  bottom: 0;
+}
+
+#varieties .chosen .chosen-title span{
   font-style: italic;
+}
+
+#varieties .chosen img{
+  margin-top:20px;
+  width: 80%;
+}
+
+/* --- species --- */
+
+#varieties .species{
+    text-align: left;
+}
+#varieties .species h2{
+  font-size: 2.5em;
+  text-transform: uppercase;
+    margin: 0px;
+}
+#varieties .species p{
+  color: $emerald;
+  cursor:pointer;
+  font-size: 1.2em;
+}
+#varieties .species p:hover{
+  color: $green;
+}
+
+#varieties .species .active-specie{
+  color:$green;
+  font-weight: bold;
+}
+
+
+/* --- slide-1 grid --- */
+#varieties #slide-4 .species{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  "title      title"
+  "leftTop    rightTop"
+  "bottom     bottom"
+}
+
+#varieties .species #agave{
+  grid-area: leftTop;
+}
+#varieties .species #yucca{
+  grid-area: bottom;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#varieties .species #yucca h3{
+grid-column:1/-1;
+margin: 0;
+justify-self: left;
+}
+#varieties .species #agavoidae-mixed{
+  grid-area: rightTop;
+}
+
+
+
+
+
+/* --- points --- */
+
+#varieties .nav-points{
+  position: absolute;
+  top:0px;
+  right: 0;
+  padding: 10px;
+}
+
+#varieties .nav-points span{
+  display: block;
+  cursor: pointer;
+  color: $emerald;
+}
+
+#varieties .nav-points span:hover{
+  display: block;
+  cursor: pointer;
+  color: $green;
+}
+
+#varieties .nav-points span.active{
+  color: $green;
+}
+
+#varieties .nav-points span::before{
+  content: '\25A1';
+}
+
+#varieties .nav-points span.active::before{
+  content: '\25A0';
 }
 
 
@@ -255,8 +389,8 @@ h4{
 #faq{
   display: flex;
   text-align: center;
-  height: 350px;
-  color: #fff;
+  min-height: 350px;
+  color: $light;
 }
 
 
@@ -290,20 +424,24 @@ h4{
   z-index: 1;
 
 }
+
+
+
  #faq .card .back {
   width: 100%;
   height: 100%;
-  background: white;
+  background: $light;
   border-style: solid;
   cursor: default;
   transform: rotatey(-180deg);
-  overflow-y:scroll;
+
+
 }
 
 
 
 
-#faq .card2{
+#faq .card-2{
   margin: 0 10px;
 }
 
@@ -317,7 +455,7 @@ h4{
   }
   #{$card} .card-title{
     background-color: $color;
-    color: #fff;
+    color: $light;
   }
 }
 
@@ -354,16 +492,6 @@ h4{
       cursor: pointer;
 }
 
-#faq .back .q::before{
-  content: '◆';
-}
-
-
-/*
-#faq .back span.active{
-      display: block;
-  transform: rotatex(-180deg);
-}*/
 
 #faq .back .a{
   font-style: italic;
@@ -375,10 +503,6 @@ h4{
 #faq .back .question.active .a{
   cursor: pointer;
 }
-
-
-
-
 
 
 
@@ -404,8 +528,8 @@ h4{
 
 #gallery .move{
   border-style: none;
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.3);
+  color: $light;
+  background-color: rgba(rgb(229, 229, 229), 0.3);
   height: 500px;
   width: 100px;
   position: absolute;
