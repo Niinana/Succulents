@@ -124,21 +124,6 @@ questions.forEach(question => question.addEventListener('click', toggleActive));
 
 
 /* --- flipping --- */
-/*
-function openCard(){
-  this.classList.add('flipped');
-}
-
-function closeCard(){
-  const activated = this.querySelector('#faq .question.active');
-  if(activated !== null) { removeActive(activated);}
-  this.classList.remove('flipped');
-}
-
-cards.forEach(card => {
-  card.addEventListener('click', openCard);
-  card.addEventListener('mouseleave', closeCard);
-});*/
 
 function openCard(card){
   card.classList.add('flipped');
@@ -146,7 +131,7 @@ function openCard(card){
 
 function closeCard(card){
   const activated = card.querySelector('#faq .question.active');
-  if(activated !== null) { removeActive(activated);}
+  if(activated) { removeActive(activated);}
   card.classList.remove('flipped');
 }
 
@@ -204,3 +189,71 @@ function galleryMove(){
 }
 
 moveBtns.forEach(btn => btn.addEventListener('click', galleryMove));
+
+
+/* ---------- CONTACT ---------- */
+
+const contactBtn = document.querySelector('#contact button');
+const popUp = document.querySelector('#contact .popup');
+const overlay = document.querySelector('#contact .overlay');
+const close = document.querySelector('#contact .popup .close');
+const send = document.querySelector('#contact button#send');
+
+/* --- pop up --- */
+
+function openPopUp(){
+  popUp.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+}
+
+function closePopUp(){
+  popUp.classList.add('hidden');
+  overlay.classList.add('hidden');
+}
+
+contactBtn.addEventListener('click', openPopUp);
+close.addEventListener('click', closePopUp);
+
+/* --- form --- */
+
+function validateForm(){
+  const name = document.querySelector('#contact #name').value;
+  const email= document.querySelector('#contact #email').value;
+  const msg = document.querySelector('#contact #msg').value;
+
+  let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let valid = true;
+
+  if(name.length==0){
+    document.querySelector('#contact #validate-name').innerHTML = "Please enter your name";
+    valid = false;
+  }
+  else{
+    document.querySelector('#contact #validate-name').innerHTML = "";
+    valid = true;
+  }
+
+  if(msg.length==0){
+    document.querySelector('#contact #validate-msg').innerHTML = "Please enter your message";
+    valid = false;
+  }
+  else{
+    document.querySelector('#contact #validate-msg').innerHTML = "";
+    valid = true;
+  }
+
+  if(!reg.test(email.toLowerCase())){
+    document.querySelector('#contact #validate-email').innerHTML = "Please enter valid email";
+    valid = false;
+  }
+  else{
+    document.querySelector('#contact #validate-email').innerHTML = "";
+    valid = true;
+  }
+
+  if(valid){
+    closePopUp();
+    return true;
+  }
+  return false;
+}

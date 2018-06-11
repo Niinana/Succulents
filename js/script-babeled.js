@@ -133,21 +133,6 @@ questions.forEach(function (question) {
 });
 
 /* --- flipping --- */
-/*
-function openCard(){
-  this.classList.add('flipped');
-}
-
-function closeCard(){
-  const activated = this.querySelector('#faq .question.active');
-  if(activated !== null) { removeActive(activated);}
-  this.classList.remove('flipped');
-}
-
-cards.forEach(card => {
-  card.addEventListener('click', openCard);
-  card.addEventListener('mouseleave', closeCard);
-});*/
 
 function openCard(card) {
   card.classList.add('flipped');
@@ -155,7 +140,7 @@ function openCard(card) {
 
 function closeCard(card) {
   var activated = card.querySelector('#faq .question.active');
-  if (activated !== null) {
+  if (activated) {
     removeActive(activated);
   }
   card.classList.remove('flipped');
@@ -214,3 +199,67 @@ function galleryMove() {
 moveBtns.forEach(function (btn) {
   return btn.addEventListener('click', galleryMove);
 });
+
+/* ---------- CONTACT ---------- */
+
+var contactBtn = document.querySelector('#contact button');
+var popUp = document.querySelector('#contact .popup');
+var overlay = document.querySelector('#contact .overlay');
+var close = document.querySelector('#contact .popup .close');
+var send = document.querySelector('#contact button#send');
+
+/* --- pop up --- */
+
+function openPopUp() {
+  popUp.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+}
+
+function closePopUp() {
+  popUp.classList.add('hidden');
+  overlay.classList.add('hidden');
+}
+
+contactBtn.addEventListener('click', openPopUp);
+close.addEventListener('click', closePopUp);
+
+/* --- form --- */
+
+function validateForm() {
+  var name = document.querySelector('#contact #name').value;
+  var email = document.querySelector('#contact #email').value;
+  var msg = document.querySelector('#contact #msg').value;
+
+  var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var valid = true;
+
+  if (name.length == 0) {
+    document.querySelector('#contact #validate-name').innerHTML = "Please enter your name";
+    valid = false;
+  } else {
+    document.querySelector('#contact #validate-name').innerHTML = "";
+    valid = true;
+  }
+
+  if (msg.length == 0) {
+    document.querySelector('#contact #validate-msg').innerHTML = "Please enter your message";
+    valid = false;
+  } else {
+    document.querySelector('#contact #validate-msg').innerHTML = "";
+    valid = true;
+  }
+
+  if (!reg.test(email.toLowerCase())) {
+    document.querySelector('#contact #validate-email').innerHTML = "Please enter valid email";
+    valid = false;
+  } else {
+    document.querySelector('#contact #validate-email').innerHTML = "";
+    valid = true;
+  }
+
+  if (valid) {
+    closePopUp();
+    return true;
+  }
+  return false;
+}
