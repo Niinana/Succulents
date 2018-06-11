@@ -124,21 +124,45 @@ questions.forEach(question => question.addEventListener('click', toggleActive));
 
 
 /* --- flipping --- */
-
+/*
 function openCard(){
   this.classList.add('flipped');
 }
 
 function closeCard(){
   const activated = this.querySelector('#faq .question.active');
-  removeActive(activated);
- this.classList.remove('flipped');
+  if(activated !== null) { removeActive(activated);}
+  this.classList.remove('flipped');
 }
 
 cards.forEach(card => {
   card.addEventListener('click', openCard);
   card.addEventListener('mouseleave', closeCard);
-});
+});*/
+
+function openCard(card){
+  card.classList.add('flipped');
+}
+
+function closeCard(card){
+  const activated = card.querySelector('#faq .question.active');
+  if(activated !== null) { removeActive(activated);}
+  card.classList.remove('flipped');
+}
+
+function toggleCard(){
+  const clicked = event.target.closest('.card');
+  const flipped = document.querySelector('#faq .flipped');
+  if(!clicked && flipped){
+   closeCard(flipped);
+  }
+  else if(clicked && clicked !== flipped){
+    if(flipped) {closeCard(flipped);}
+    openCard(clicked);
+  }
+}
+
+document.addEventListener('click', toggleCard)
 
 
 /* ---------- GALLERY ---------- */

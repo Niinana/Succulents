@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
+const rename = require('gulp-rename');
 
 gulp.task('style', function() {
   return gulp.src('../css/style.scss')
@@ -14,18 +15,23 @@ gulp.task('style', function() {
     .pipe(gulp.dest('../css'));
 });
 
+
 gulp.task('script', () =>
-	gulp.src('../Test/script.es6')
+	gulp.src('./script.js')
 		.pipe(babel({
-			presets: ['@babel/env']
+			presets: [['env', {
+      'targets': {
+        'browsers': [ '>0.25%']
+      }}]]
 		}))
-		.pipe(gulp.dest('../Test'))
+    .pipe(rename('script-babeled.js'))
+		.pipe(gulp.dest('.'))
 );
 
 /* ---------- watching for changes ---------- */
 gulp.task('watch', function(){
   gulp.watch('../css/style.scss', ['style']);
-  gulp.watch('../Test/script.es6', ['script']);
+  gulp.watch('./script.js', ['script']);
 });
 
 /* ---------- default ---------- */
