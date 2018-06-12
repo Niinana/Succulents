@@ -178,7 +178,9 @@ function galleryMove() {
   if (this.classList.contains('next')) {
     var galleryEnd = gallery.getBoundingClientRect().width;
     var imageEnd = lastImg.getBoundingClientRect().x + lastImg.getBoundingClientRect().width;
-    if (imageEnd - galleryEnd >= translateValue + translated) {
+    console.log(galleryEnd, imageEnd);
+    console.log(translateValue, translated);
+    if (imageEnd - galleryEnd >= translateValue) {
       translated += translateValue;
       galleryWrapper.style.transform = 'translate(-' + translated + 'px, 0px)';
     } else {
