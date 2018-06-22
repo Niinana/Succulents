@@ -79,12 +79,14 @@ points.forEach(function (point) {
 /* --- species --- */
 
 function activeSpecie() {
-  var previous = document.querySelector('#varieties .species .active-specie');
+  var previous = Array.from(document.querySelectorAll('#varieties .species .active-specie'));
   var img = this.dataset.image;
   var parent = this.parentElement.id.replace(/-/g, ' ');;
   var image = document.querySelector('#varieties .active .chosen img');
   var titlePlaceholder = document.querySelector('#varieties .active .chosen-title');
-  previous.classList.remove('active-specie');
+  previous.forEach(function (p) {
+    return p.classList.remove('active-specie');
+  });
   this.classList.add('active-specie');
   image.src = img;
   titlePlaceholder.innerHTML = '<span>' + this.textContent + '</span> (' + parent + ')';

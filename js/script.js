@@ -77,12 +77,12 @@ points.forEach(point => point.addEventListener('click', activePoint))
 /* --- species --- */
 
 function activeSpecie(){
-  const previous = document.querySelector('#varieties .species .active-specie');
+  const previous = Array.from(document.querySelectorAll('#varieties .species .active-specie'));
   const img = this.dataset.image;
   const parent = this.parentElement.id.replace(/-/g, ' ');;
   const image = document.querySelector('#varieties .active .chosen img');
   const titlePlaceholder = document.querySelector('#varieties .active .chosen-title');
-  previous.classList.remove('active-specie');
+  previous.forEach(p => p.classList.remove('active-specie'));
   this.classList.add('active-specie');
   image.src = img;
   titlePlaceholder.innerHTML=`<span>${this.textContent}</span> (${parent})`;
