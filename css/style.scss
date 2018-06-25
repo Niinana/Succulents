@@ -538,9 +538,27 @@ justify-self: left;
 
 /* --------- CONTACT --------- */
 
-#contact img{
-  width: 75%;
+#contact{
+  background-image: url('../images/footer.png');
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 80%;
+  padding: 20% 10% 30% 0%;
+  h1,h3{
+    text-align: right;
+  }
+  h1{
+    color: $emerald;
+    font-style: italic;
+    font-size:2.5em;
+  }
+  h3{
+    color: $green;
+    font-weight: 300;
+  }
 }
+
+
 
 #contact .btn{
   font-size: 1.2em;

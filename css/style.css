@@ -603,8 +603,21 @@ path {
   right: 0; }
 
 /* --------- CONTACT --------- */
-#contact img {
-  width: 75%; }
+#contact {
+  background-image: url("../images/footer.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 80%;
+  padding: 20% 10% 30% 0%; }
+  #contact h1, #contact h3 {
+    text-align: right; }
+  #contact h1 {
+    color: #2C514C;
+    font-style: italic;
+    font-size: 2.5em; }
+  #contact h3 {
+    color: #8d9e6b;
+    font-weight: 300; }
 
 #contact .btn {
   font-size: 1.2em;
