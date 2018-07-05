@@ -33,7 +33,7 @@ h4 {
 #header {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  grid-template-rows: 200px 300px 100px;
+  grid-template-rows: 300px 200px 100px;
   grid-template-areas: "icon    picture" "title   picture" ".       picture";
   justify-items: center;
   place-items: stretch stretch;
@@ -41,32 +41,42 @@ h4 {
 
 #header .icon {
   grid-area: icon;
-  background-color: #8d9e6b;
+  justify-self: center;
+  -ms-flex-item-align: end;
+      align-self: end; }
+
+#header .icon1 {
+  grid-area: icon;
+  width: 25%;
   justify-self: center;
   -ms-flex-item-align: end;
       align-self: end; }
 
 path {
-  stroke-dasharray: 300;
-  opacity: 10;
-  -webkit-animation: animate 5500ms;
-          animation: animate 5500ms; }
+  stroke: black;
+  stroke-width: 2;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  -webkit-animation: animate 3000ms;
+          animation: animate 3000ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
 
 @-webkit-keyframes animate {
   0% {
-    opacity: 10;
-    stroke-dashoffset: 300; }
+    stroke-dashoffset: 700;
+    fill: transparent; }
   100% {
-    opacity: 10;
-    stroke-dashoffset: 0; } }
+    stroke-dashoffset: 0;
+    fill: black; } }
 
 @keyframes animate {
   0% {
-    opacity: 10;
-    stroke-dashoffset: 300; }
+    stroke-dashoffset: 700;
+    fill: transparent; }
   100% {
-    opacity: 10;
-    stroke-dashoffset: 0; } }
+    stroke-dashoffset: 0;
+    fill: black; } }
 
 #header .title {
   grid-area: title;
@@ -749,8 +759,6 @@ path {
   #header {
     grid-template-rows: 250px 100px 100px;
     grid-template-areas: "picture picture" "icon icon" "title title"; }
-  svg {
-    width: 50px; }
   @-webkit-keyframes Show {
     0% {
       opacity: 0;
