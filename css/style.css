@@ -14,7 +14,8 @@
 body {
   margin: 0;
   color: #101E1C;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  max-width: 1920px; }
 
 .content {
   margin: 10%;
@@ -331,6 +332,7 @@ path {
   overflow: hidden;
   position: relative;
   color: #101E1C;
+  background-color: #fff;
   -webkit-box-shadow: inset 0px 0px 10px 1px rgba(141, 158, 107, 0.7);
           box-shadow: inset 0px 0px 10px 1px rgba(141, 158, 107, 0.7); }
 
@@ -368,22 +370,27 @@ path {
   font-weight: normal;
   color: #101E1C;
   position: absolute;
-  bottom: 0; }
+  bottom: 0;
+  font-size: 1.8em; }
 
 #varieties .chosen .chosen-title span {
   font-style: italic; }
 
 #varieties .chosen img {
-  width: 80%; }
+  width: 420px; }
 
 /* --- species --- */
 #varieties .species {
-  text-align: left; }
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 55px; }
 
 #varieties .species h2 {
-  font-size: 2.5em;
+  font-size: 2em;
   text-transform: uppercase;
-  margin: 0px; }
+  margin: 0px;
+  grid-column: span 2; }
 
 #varieties .species p {
   color: #2C514C;
@@ -739,6 +746,17 @@ path {
     font-size: 1.1em; }
   #navigation .logo {
     font-size: 2.2em; }
+  #varieties .slider {
+    height: 650px; }
+  #varieties .slide {
+    grid-template-columns: 1fr;
+    height: 100%; }
+  #varieties .chosen {
+    height: 300px; }
+  #varieties .chosen img {
+    width: 40%; }
+  #varieties .chosen .chosen-title {
+    font-size: 1.5em; }
   #faq {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
