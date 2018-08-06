@@ -5,33 +5,36 @@ const babel = require('gulp-babel');
 const rename = require('gulp-rename');
 
 gulp.task('style', function() {
-  return gulp.src('../css/style.scss')
+  return gulp.src('./css/style.scss')
     .pipe(sass({
       style: 'expanded'
     }))
     .pipe(autoprefixer({
       browsers: ['last 5 versions']
     }))
-    .pipe(gulp.dest('../css'));
+    .pipe(gulp.dest('./css'));
 });
 
 
 gulp.task('script', () =>
-	gulp.src('./script.js')
+	gulp.src('./js/script.js')
 		.pipe(babel({
-			presets: [['env', {
-      'targets': {
-        'browsers': [ '>0.25%']
-      }}]]
+			presets: [
+        ['env', {
+          'targets': {
+            'browsers': [ '>0.25%']
+          }
+        }]
+      ]
 		}))
     .pipe(rename('script-babeled.js'))
-		.pipe(gulp.dest('.'))
+		.pipe(gulp.dest('./js'))
 );
 
 /* ---------- watching for changes ---------- */
 gulp.task('watch', function(){
-  gulp.watch('../css/style.scss', ['style']);
-  gulp.watch('./script.js', ['script']);
+  gulp.watch('./css/style.scss', ['style']);
+  gulp.watch('./js/script.js', ['script']);
 });
 
 /* ---------- default ---------- */

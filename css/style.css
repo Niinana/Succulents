@@ -11,24 +11,28 @@
     background-position: 0% 0%; } }
 
 /* --------- GENERAL --------- */
+html {
+  font-size: 16px; }
+
 body {
   margin: 0;
   color: #101E1C;
   background-color: #ffffff;
-  max-width: 1920px; }
+  max-width: 1920px;
+  font-size: 1rem; }
 
 .content {
   margin: 10%;
   font-family: "Alice", serif; }
 
 h2 {
-  font-size: 2em; }
+  font-size: 2rem; }
 
 h3 {
-  font-size: 1.5em; }
+  font-size: 1.5rem; }
 
 h4 {
-  font-size: 1.2em; }
+  font-size: 1.2rem; }
 
 /* ---------- HEADER --------- */
 #header {
@@ -39,19 +43,26 @@ h4 {
   justify-items: center;
   place-items: stretch stretch;
   width: 100%; }
-
-#header .icon {
-  grid-area: icon;
-  justify-self: center;
-  -ms-flex-item-align: end;
-      align-self: end; }
-
-#header .icon1 {
-  grid-area: icon;
-  width: 25%;
-  justify-self: center;
-  -ms-flex-item-align: end;
-      align-self: end; }
+  #header .icon {
+    grid-area: icon;
+    width: 25%;
+    justify-self: center;
+    -ms-flex-item-align: end;
+        align-self: end; }
+  #header .title {
+    grid-area: title;
+    justify-self: center;
+    -ms-flex-item-align: start;
+        align-self: start;
+    color: #101E1C;
+    font-family: "Montez", cursive;
+    font-weight: bolder; }
+  #header .pic {
+    grid-area: picture;
+    background-image: url("../images/96454ce2260416f1d93fef32e4a58ecf.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -999; }
 
 path {
   stroke: black;
@@ -78,15 +89,6 @@ path {
   100% {
     stroke-dashoffset: 0;
     fill: black; } }
-
-#header .title {
-  grid-area: title;
-  justify-self: center;
-  -ms-flex-item-align: start;
-      align-self: start;
-  color: #101E1C;
-  font-family: "Montez", cursive;
-  font-weight: bolder; }
 
 /* --- title animation --- */
 .title span {
@@ -171,25 +173,18 @@ path {
 @-webkit-keyframes Show {
   0% {
     opacity: 0;
-    font-size: 0.01em; }
+    font-size: 0.01rem; }
   100% {
     opacity: 1;
-    font-size: 4.5em; } }
+    font-size: 4.5rem; } }
 
 @keyframes Show {
   0% {
     opacity: 0;
-    font-size: 0.01em; }
+    font-size: 0.01rem; }
   100% {
     opacity: 1;
-    font-size: 4.5em; } }
-
-#header .pic {
-  grid-area: picture;
-  background-image: url("../images/96454ce2260416f1d93fef32e4a58ecf.jpg");
-  background-size: cover;
-  background-position: center;
-  z-index: -999; }
+    font-size: 4.5rem; } }
 
 /* --------- NAVIGATION --------- */
 #navigation {
@@ -239,7 +234,7 @@ path {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-family: "Alice", serif;
   text-transform: uppercase;
   width: 100%;
@@ -260,7 +255,7 @@ path {
   overflow: hidden;
   text-transform: lowercase;
   font-weight: 900;
-  font-size: 2.5em;
+  font-size: 2.5rem;
   font-family: "Montez", cursive;
   -webkit-transition: all 1.5s;
   -o-transition: all 1.5s;
@@ -347,7 +342,7 @@ path {
   margin: 0, 10px; }
 
 #varieties .slide {
-  width: 100%;
+  width: 95%;
   height: 90%;
   padding: 2.5%;
   display: grid;
@@ -362,22 +357,17 @@ path {
   position: relative;
   display: grid;
   justify-items: center; }
-
-#varieties .chosen .chosen-title {
-  margin: 0;
-  padding: 10px;
-  text-transform: lowercase !important;
-  font-weight: normal;
-  color: #101E1C;
-  position: absolute;
-  bottom: 0;
-  font-size: 1.8em; }
-
-#varieties .chosen .chosen-title span {
-  font-style: italic; }
-
-#varieties .chosen img {
-  width: 420px; }
+  #varieties .chosen img {
+    width: 420px; }
+  #varieties .chosen .chosen-title {
+    margin: 0;
+    padding: 10px;
+    text-transform: lowercase !important;
+    font-weight: normal;
+    color: #101E1C;
+    font-size: 1.5rem; }
+    #varieties .chosen .chosen-title span {
+      font-style: italic; }
 
 /* --- species --- */
 #varieties .species {
@@ -385,46 +375,21 @@ path {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 55px; }
-
-#varieties .species h2 {
-  font-size: 2em;
-  text-transform: uppercase;
-  margin: 0px;
-  grid-column: span 2; }
-
-#varieties .species p {
-  color: #2C514C;
-  cursor: pointer;
-  font-size: 1.2em; }
-
-#varieties .species p:hover {
-  color: #8d9e6b; }
-
-#varieties .species .active-specie {
-  color: #8d9e6b;
-  font-weight: bold; }
-
-/* --- slide-1 grid --- */
-#varieties #slide-4 .species {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "title      title" "leftTop    rightTop" "bottom     bottom"; }
-
-#varieties .species #agave {
-  grid-area: leftTop; }
-
-#varieties .species #yucca {
-  grid-area: bottom;
-  display: grid;
-  grid-template-columns: 1fr 1fr; }
-
-#varieties .species #yucca h3 {
-  grid-column: 1/-1;
-  margin: 0;
-  justify-self: left; }
-
-#varieties .species #agavoidae-mixed {
-  grid-area: rightTop; }
+  #varieties .species h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin: 0px;
+    grid-column: span 2; }
+  #varieties .species p {
+    color: #2C514C;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 10px; }
+  #varieties .species p:hover {
+    color: #8d9e6b; }
+  #varieties .species .active-specie {
+    color: #8d9e6b;
+    font-weight: bold; }
 
 /* --- points --- */
 #varieties .nav-points {
@@ -565,7 +530,7 @@ path {
   text-align: left; }
 
 #faq .back p {
-  font-size: 1.2em; }
+  font-size: 1.2rem; }
 
 #faq .back .q {
   font-weight: bold;
@@ -631,13 +596,13 @@ path {
   #contact h1 {
     color: #2C514C;
     font-style: italic;
-    font-size: 2.5em; }
+    font-size: 2.5rem; }
   #contact h3 {
     color: #8d9e6b;
     font-weight: 300; }
 
 #contact .btn {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   text-transform: uppercase;
   float: right;
   color: #ffffff;
@@ -711,7 +676,7 @@ path {
 #contact input, textarea {
   font: "Alice", serif;
   color: #101E1C;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   border-style: none;
   border-bottom: 1px solid #101E1C;
   display: block;
@@ -736,27 +701,34 @@ path {
 
 /* --------- MEDIA QUERIES --------- */
 @media only screen and (max-width: 1024px) {
+  html {
+    font-size: 14px; }
   #header {
     grid-template-rows: 200px 200px;
     grid-template-areas: "icon    picture" "title   picture"; }
   #navigation {
     margin-top: 0px;
     width: 100%; }
-  #navigation li {
-    font-size: 1.1em; }
-  #navigation .logo {
-    font-size: 2.2em; }
   #varieties .slider {
     height: 650px; }
   #varieties .slide {
     grid-template-columns: 1fr;
     height: 100%; }
+  #varieties .species {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1; }
   #varieties .chosen {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
     height: 300px; }
   #varieties .chosen img {
-    width: 40%; }
-  #varieties .chosen .chosen-title {
-    font-size: 1.5em; }
+    width: 30%; }
+  #varieties .species {
+    grid-auto-flow: dense; }
+    #varieties .species h2 {
+      display: block; }
   #faq {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -777,27 +749,9 @@ path {
   #header {
     grid-template-rows: 250px 100px 100px;
     grid-template-areas: "picture picture" "icon icon" "title title"; }
-  @-webkit-keyframes Show {
-    0% {
-      opacity: 0;
-      font-size: 0.01em; }
-    100% {
-      opacity: 1;
-      font-size: 3.5em; } }
-  @keyframes Show {
-    0% {
-      opacity: 0;
-      font-size: 0.01em; }
-    100% {
-      opacity: 1;
-      font-size: 3.5em; } }
   #navigation {
     margin-top: 0px;
     width: 100%; }
-  #navigation li {
-    font-size: 1.1em; }
-  #navigation .logo {
-    font-size: 2.2em; }
   #faq {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
