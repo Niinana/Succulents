@@ -59,7 +59,7 @@ h4 {
     font-weight: bolder; }
   #header .pic {
     grid-area: picture;
-    background-image: url("../images/96454ce2260416f1d93fef32e4a58ecf.jpg");
+    background-image: url("../images/header.jpg");
     background-size: cover;
     background-position: center;
     z-index: -999; }
